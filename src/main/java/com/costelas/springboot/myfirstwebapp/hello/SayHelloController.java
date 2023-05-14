@@ -31,4 +31,14 @@ public class SayHelloController {
 
         return stringBuffer.toString();
     }
+
+    // JSP = java server pages
+    // sayHello.jsp
+    // say-hello-jsp => sayHello.jsp
+    //src/main/resources/META-INF/resources/WEB-INF/jsp/sayHello.jsp
+    @RequestMapping("say-hello-jsp")
+    public String sayHelloJsp() {
+        return "sayHello";
+    }
+
 }
