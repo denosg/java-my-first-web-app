@@ -6,7 +6,8 @@
 	</head>
 	<body>
 		<div>Welcome ${name} !</div>
-		<div>Your Todos are</div>
+		<hr>
+		<h1>Your Todos</h1>
 		<table>
 		    <thead>
 		        <tr>
