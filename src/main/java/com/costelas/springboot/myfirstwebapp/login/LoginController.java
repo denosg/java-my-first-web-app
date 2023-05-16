@@ -8,8 +8,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes("name") // @SessionAttributes saves the attributes for the session
+// Wherever we use @SessionAttributes, we need to use it in all the controllers that we want to make use of that value
 public class LoginController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
