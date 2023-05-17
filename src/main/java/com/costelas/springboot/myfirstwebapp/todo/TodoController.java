@@ -1,7 +1,9 @@
 package com.costelas.springboot.myfirstwebapp.todo;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,7 +43,12 @@ public class TodoController {
 
     @RequestMapping(value = "add-todo", method = RequestMethod.POST)
     // Map forms from todo.jsp to this todo
-    public String addNewTodo(ModelMap modelMap, Todo todo) {
+    // Validation here + Validation at todo + BindingResult
+    public String addNewTodo(ModelMap modelMap, @Valid Todo todo, BindingResult result) {
+        if (result.hasErrors()) {
+            return "todo";
+        }
+
         String username = (String)modelMap.get("name");
         todoService.addTodo(username,todo.getDescription(),
                 LocalDate.now().plusYears(1),false);

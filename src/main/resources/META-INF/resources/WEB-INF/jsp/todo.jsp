@@ -17,6 +17,7 @@
                 <form:input type="hidden" path="id"/>
                 <form:input type="hidden" path="done"/>
                 <input type="submit" class="btn btn-success"/>
+                <form:errors path="description" cssClass="text-warning"/>
             </form:form>
 		</div>
 		<script src="webjars/bootstrap/5.1.3/js/bootstrap.js"></script>

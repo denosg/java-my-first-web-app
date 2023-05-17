@@ -1,5 +1,7 @@
 package com.costelas.springboot.myfirstwebapp.todo;
 
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 // Database MySQL
@@ -9,6 +11,8 @@ public class Todo {
 
     private long id;
     private String username;
+    // validation here
+    @Size(min = 10, message = "Enter at least 10 char")
     private String description;
     private LocalDate targetDate;
     private boolean done;
