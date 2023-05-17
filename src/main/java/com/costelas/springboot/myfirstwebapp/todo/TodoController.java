@@ -60,8 +60,29 @@ public class TodoController {
         //Delete todo
         todoService.deleteById(id);
         return "redirect:list-todos";
-
         // We implement the logic of deleting the todo in TodoService
+    }
+
+    @RequestMapping(value = "update-todo", method = RequestMethod.POST)
+    // Map forms from todo.jsp to this todo
+    // Validation here + Validation at todo + BindingResult
+    public String updateTodo(ModelMap modelMap, @Valid Todo todo, BindingResult result) {
+        if (result.hasErrors()) {
+            return "todo";
+        }
+        String username = (String) modelMap.get("name");
+        todo.setUsername(username);
+        todoService.updateTodo(todo);
+        return "redirect:list-todos";
+    }
+
+    @RequestMapping(value = "update-todo", method = RequestMethod.GET)
+    public String showUpdateTodoPage(@RequestParam long id, ModelMap modelMap) {
+        //Update todo
+        Todo todo = todoService.findById(id);
+        modelMap.addAttribute("todo", todo);
+        return "todo";
+        // We implement the logic of updating the todo in TodoService
     }
 
 }
