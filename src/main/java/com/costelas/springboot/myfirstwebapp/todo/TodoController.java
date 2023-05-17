@@ -34,7 +34,7 @@ public class TodoController {
     // GET, POST
     @RequestMapping(value = "add-todo", method = RequestMethod.GET)
     public String showNewTodoPage(ModelMap modelMap) {
-        String username = (String)modelMap.get("name");
+        String username = (String) modelMap.get("name");
         Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(1), false);
         // the todo from todo.jsp is mapped here;
         modelMap.put("todo", todo);
@@ -49,10 +49,19 @@ public class TodoController {
             return "todo";
         }
 
-        String username = (String)modelMap.get("name");
-        todoService.addTodo(username,todo.getDescription(),
-                LocalDate.now().plusYears(1),false);
+        String username = (String) modelMap.get("name");
+        todoService.addTodo(username, todo.getDescription(),
+                LocalDate.now().plusYears(1), false);
         return "redirect:list-todos";
+    }
+
+    @RequestMapping("delete-todo")
+    public String deleteTodo(@RequestParam long id) {
+        //Delete todo
+        todoService.deleteById(id);
+        return "redirect:list-todos";
+
+        // We implement the logic of deleting the todo in TodoService
     }
 
 }
