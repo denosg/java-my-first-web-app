@@ -50,8 +50,9 @@ public class TodoController {
         }
 
         String username = (String) modelMap.get("name");
+        LocalDate targetDate = todo.getTargetDate();
         todoService.addTodo(username, todo.getDescription(),
-                LocalDate.now().plusYears(1), false);
+                targetDate, false);
         return "redirect:list-todos";
     }
 
